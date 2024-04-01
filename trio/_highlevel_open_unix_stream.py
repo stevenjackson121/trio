@@ -10,8 +10,7 @@ from trio.socket import SOCK_STREAM, socket
 
 
 class Closable(Protocol):
-    def close(self) -> None:
-        ...
+    def close(self) -> None: ...
 
 
 CloseT = TypeVar("CloseT", bound=Closable)

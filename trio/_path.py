@@ -252,8 +252,7 @@ class Path(metaclass=AsyncAutoWrapperType):
         encoding: str | None = None,
         errors: str | None = None,
         newline: str | None = None,
-    ) -> _AsyncIOWrapper[TextIOWrapper]:
-        ...
+    ) -> _AsyncIOWrapper[TextIOWrapper]: ...
 
     @overload
     async def open(
@@ -263,8 +262,7 @@ class Path(metaclass=AsyncAutoWrapperType):
         encoding: None = None,
         errors: None = None,
         newline: None = None,
-    ) -> _AsyncIOWrapper[FileIO]:
-        ...
+    ) -> _AsyncIOWrapper[FileIO]: ...
 
     @overload
     async def open(
@@ -274,8 +272,7 @@ class Path(metaclass=AsyncAutoWrapperType):
         encoding: None = None,
         errors: None = None,
         newline: None = None,
-    ) -> _AsyncIOWrapper[BufferedRandom]:
-        ...
+    ) -> _AsyncIOWrapper[BufferedRandom]: ...
 
     @overload
     async def open(
@@ -285,8 +282,7 @@ class Path(metaclass=AsyncAutoWrapperType):
         encoding: None = None,
         errors: None = None,
         newline: None = None,
-    ) -> _AsyncIOWrapper[BufferedWriter]:
-        ...
+    ) -> _AsyncIOWrapper[BufferedWriter]: ...
 
     @overload
     async def open(
@@ -296,8 +292,7 @@ class Path(metaclass=AsyncAutoWrapperType):
         encoding: None = None,
         errors: None = None,
         newline: None = None,
-    ) -> _AsyncIOWrapper[BufferedReader]:
-        ...
+    ) -> _AsyncIOWrapper[BufferedReader]: ...
 
     @overload
     async def open(
@@ -307,8 +302,7 @@ class Path(metaclass=AsyncAutoWrapperType):
         encoding: None = None,
         errors: None = None,
         newline: None = None,
-    ) -> _AsyncIOWrapper[BinaryIO]:
-        ...
+    ) -> _AsyncIOWrapper[BinaryIO]: ...
 
     @overload
     async def open(  # type: ignore[misc]  # Any usage matches builtins.open().
@@ -318,8 +312,7 @@ class Path(metaclass=AsyncAutoWrapperType):
         encoding: str | None = None,
         errors: str | None = None,
         newline: str | None = None,
-    ) -> _AsyncIOWrapper[IO[Any]]:
-        ...
+    ) -> _AsyncIOWrapper[IO[Any]]: ...
 
     @wraps(pathlib.Path.open)  # type: ignore[misc]  # Overload return mismatch.
     async def open(self, *args: Any, **kwargs: Any) -> _AsyncIOWrapper[IO[Any]]:

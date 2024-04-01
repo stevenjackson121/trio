@@ -814,12 +814,10 @@ class TaskStatus(Protocol[StatusT_contra]):
     """
 
     @overload
-    def started(self: TaskStatus[None]) -> None:
-        ...
+    def started(self: TaskStatus[None]) -> None: ...
 
     @overload
-    def started(self, value: StatusT_contra) -> None:
-        ...
+    def started(self, value: StatusT_contra) -> None: ...
 
     def started(self, value: StatusT_contra | None = None) -> None:
         """Tasks call this method to indicate that they have initialized.
@@ -841,12 +839,10 @@ class _TaskStatus(TaskStatus[StatusT]):
         return f"<Task status object at {id(self):#x}>"
 
     @overload
-    def started(self: _TaskStatus[None]) -> None:
-        ...
+    def started(self: _TaskStatus[None]) -> None: ...
 
     @overload
-    def started(self: _TaskStatus[StatusT], value: StatusT) -> None:
-        ...
+    def started(self: _TaskStatus[StatusT], value: StatusT) -> None: ...
 
     def started(self, value: StatusT | None = None) -> None:
         if self._value is not _NoStatus:
@@ -2264,8 +2260,9 @@ def start_guest_run(
     *args: object,
     run_sync_soon_threadsafe: Callable[[Callable[[], object]], object],
     done_callback: Callable[[Outcome[RetT]], object],
-    run_sync_soon_not_threadsafe: Callable[[Callable[[], object]], object]
-    | None = None,
+    run_sync_soon_not_threadsafe: (
+        Callable[[Callable[[], object]], object] | None
+    ) = None,
     host_uses_signal_set_wakeup_fd: bool = False,
     clock: Clock | None = None,
     instruments: Sequence[Instrument] = (),

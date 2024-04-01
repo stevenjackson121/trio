@@ -113,7 +113,7 @@ def spawn_system_task(
     async_fn: Callable[..., Awaitable[object]],
     *args: object,
     name: object = None,
-    context: (contextvars.Context | None) = None,
+    context: contextvars.Context | None = None,
 ) -> Task:
     """Spawn a "system" task.
 

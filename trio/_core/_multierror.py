@@ -263,12 +263,10 @@ class MultiError(_BaseExceptionGroup):
         return f"<MultiError: {self}>"
 
     @overload  # type: ignore[override]  # 'Exception' != '_ExceptionT'
-    def derive(self, excs: Sequence[Exception], /) -> NonBaseMultiError:
-        ...
+    def derive(self, excs: Sequence[Exception], /) -> NonBaseMultiError: ...
 
     @overload
-    def derive(self, excs: Sequence[BaseException], /) -> MultiError:
-        ...
+    def derive(self, excs: Sequence[BaseException], /) -> MultiError: ...
 
     def derive(
         self, excs: Sequence[Exception | BaseException], /

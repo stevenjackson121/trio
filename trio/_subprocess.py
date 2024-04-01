@@ -38,8 +38,7 @@ StrOrBytesPath: TypeAlias = Union[str, bytes, "os.PathLike[str]", "os.PathLike[b
 can_try_pidfd_open: bool
 if TYPE_CHECKING:
 
-    def pidfd_open(fd: int, flags: int) -> int:
-        ...
+    def pidfd_open(fd: int, flags: int) -> int: ...
 
     from ._subprocess_platform import ClosableReceiveStream, ClosableSendStream
 
@@ -83,8 +82,7 @@ else:
 class HasFileno(Protocol):
     """Represents any file-like object that has a file descriptor."""
 
-    def fileno(self) -> int:
-        ...
+    def fileno(self) -> int: ...
 
 
 @final
@@ -130,6 +128,7 @@ class Process(AsyncResource, metaclass=NoPublicConstructor):
           available; otherwise this will be None.
 
     """
+
     # We're always in binary mode.
     universal_newlines: Final = False
     encoding: Final = None
@@ -814,8 +813,7 @@ if TYPE_CHECKING:
             env: Mapping[str, str] | None = None,
             startupinfo: subprocess.STARTUPINFO | None = None,
             creationflags: int = 0,
-        ) -> trio.Process:
-            ...
+        ) -> trio.Process: ...
 
         async def run_process(
             command: StrOrBytesPath | Sequence[StrOrBytesPath],
@@ -834,8 +832,7 @@ if TYPE_CHECKING:
             env: Mapping[str, str] | None = None,
             startupinfo: subprocess.STARTUPINFO | None = None,
             creationflags: int = 0,
-        ) -> subprocess.CompletedProcess[bytes]:
-            ...
+        ) -> subprocess.CompletedProcess[bytes]: ...
 
     else:  # Unix
 
@@ -854,8 +851,7 @@ if TYPE_CHECKING:
             restore_signals: bool = True,
             start_new_session: bool = False,
             pass_fds: Sequence[int] = (),
-        ) -> trio.Process:
-            ...
+        ) -> trio.Process: ...
 
         @overload
         async def open_process(
@@ -872,8 +868,7 @@ if TYPE_CHECKING:
             restore_signals: bool = True,
             start_new_session: bool = False,
             pass_fds: Sequence[int] = (),
-        ) -> trio.Process:
-            ...
+        ) -> trio.Process: ...
 
         @overload  # type: ignore[no-overload-impl]
         async def run_process(
@@ -895,8 +890,7 @@ if TYPE_CHECKING:
             restore_signals: bool = True,
             start_new_session: bool = False,
             pass_fds: Sequence[int] = (),
-        ) -> subprocess.CompletedProcess[bytes]:
-            ...
+        ) -> subprocess.CompletedProcess[bytes]: ...
 
         @overload
         async def run_process(
@@ -918,8 +912,7 @@ if TYPE_CHECKING:
             restore_signals: bool = True,
             start_new_session: bool = False,
             pass_fds: Sequence[int] = (),
-        ) -> subprocess.CompletedProcess[bytes]:
-            ...
+        ) -> subprocess.CompletedProcess[bytes]: ...
 
 else:
     # At runtime, use the actual implementations.

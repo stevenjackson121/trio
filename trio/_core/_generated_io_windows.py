@@ -19,7 +19,7 @@ import sys
 assert not TYPE_CHECKING or sys.platform == "win32"
 
 
-async def wait_readable(sock: (_HasFileNo | int)) -> None:
+async def wait_readable(sock: _HasFileNo | int) -> None:
     locals()[LOCALS_KEY_KI_PROTECTION_ENABLED] = True
     try:
         return await GLOBAL_RUN_CONTEXT.runner.io_manager.wait_readable(sock)
@@ -27,7 +27,7 @@ async def wait_readable(sock: (_HasFileNo | int)) -> None:
         raise RuntimeError("must be called from async context") from None
 
 
-async def wait_writable(sock: (_HasFileNo | int)) -> None:
+async def wait_writable(sock: _HasFileNo | int) -> None:
     locals()[LOCALS_KEY_KI_PROTECTION_ENABLED] = True
     try:
         return await GLOBAL_RUN_CONTEXT.runner.io_manager.wait_writable(sock)
@@ -35,7 +35,7 @@ async def wait_writable(sock: (_HasFileNo | int)) -> None:
         raise RuntimeError("must be called from async context") from None
 
 
-def notify_closing(handle: (Handle | int | _HasFileNo)) -> None:
+def notify_closing(handle: Handle | int | _HasFileNo) -> None:
     locals()[LOCALS_KEY_KI_PROTECTION_ENABLED] = True
     try:
         return GLOBAL_RUN_CONTEXT.runner.io_manager.notify_closing(handle)
@@ -43,7 +43,7 @@ def notify_closing(handle: (Handle | int | _HasFileNo)) -> None:
         raise RuntimeError("must be called from async context") from None
 
 
-def register_with_iocp(handle: (int | CData)) -> None:
+def register_with_iocp(handle: int | CData) -> None:
     locals()[LOCALS_KEY_KI_PROTECTION_ENABLED] = True
     try:
         return GLOBAL_RUN_CONTEXT.runner.io_manager.register_with_iocp(handle)
@@ -51,9 +51,7 @@ def register_with_iocp(handle: (int | CData)) -> None:
         raise RuntimeError("must be called from async context") from None
 
 
-async def wait_overlapped(
-    handle_: (int | CData), lpOverlapped: (CData | int)
-) -> object:
+async def wait_overlapped(handle_: int | CData, lpOverlapped: CData | int) -> object:
     locals()[LOCALS_KEY_KI_PROTECTION_ENABLED] = True
     try:
         return await GLOBAL_RUN_CONTEXT.runner.io_manager.wait_overlapped(
@@ -64,7 +62,7 @@ async def wait_overlapped(
 
 
 async def write_overlapped(
-    handle: (int | CData), data: Buffer, file_offset: int = 0
+    handle: int | CData, data: Buffer, file_offset: int = 0
 ) -> int:
     locals()[LOCALS_KEY_KI_PROTECTION_ENABLED] = True
     try:
@@ -76,7 +74,7 @@ async def write_overlapped(
 
 
 async def readinto_overlapped(
-    handle: (int | CData), buffer: Buffer, file_offset: int = 0
+    handle: int | CData, buffer: Buffer, file_offset: int = 0
 ) -> int:
     locals()[LOCALS_KEY_KI_PROTECTION_ENABLED] = True
     try:
